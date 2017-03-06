@@ -40,7 +40,7 @@ module.exports = {
 
     browser
     // veriffying the value of link tag equals to https://www.sparkcentral.com/product/
-      .getAttribute("a[text*='Product']", 'href', function(result){
+      .getAttribute("#b_results > li:nth-child(1) > div.b_vlist2col.b_deep > ul:nth-child(1) > li:nth-child(1) > h3 > a", 'href', function(result){
         browser.assert.equal(result.value, "https://www.sparkcentral.com/product/")
     });
 
