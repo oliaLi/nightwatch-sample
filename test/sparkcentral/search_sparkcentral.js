@@ -19,23 +19,16 @@ module.exports = {
   'Verifying first test result': function(browser) {
     browser
     // Verifying that first search result header is Sparkcentral - Official Site
-      .assert.containsText('#b_results > li:nth-child(1) > h2 > a ', 'Sparkcentral - Official Site')
+      .assert.containsText('#b_results > li:nth-child(1) > h2 > a', 'Sparkcentral - Official Site')
 
   },
   'Verifying all test results': function(browser){
     browser
-     
-      // .getEls('li.b_algo', function(collection) {
-      //       // set the variable to be that collection's length      
-      //       elementCount = collection.length; 
-      //       return elementCount
 
-           
-      // }),
       //Looping through list of search result and verifying they all should display 'Sparkcentral'
 
-       .elements('css selector', 'cssValue', function () {
-        for(var i=0;i<8;i++){
+       .elements('css selector', '.b_algo', function (res) {
+        for(var i=0;i<res.value.length;i++){
         var elementCss = '#b_results > li:nth-child(' + (i+1) + ')> h2 > a > strong';
         browser.assert.containsText(elementCss,'Sparkcentral');
 }
@@ -44,9 +37,10 @@ module.exports = {
 
 
   'Verifying product link' : function (browser) {
+
     browser
     // veriffying the value of link tag equals to https://www.sparkcentral.com/product/
-      .getAttribute('#b_results > li:nth-child(1) > div.b_vlist2col.b_deep > ul:nth-child(1) > li:nth-child(1) > h3 > a', 'href', function(result){
+      .getAttribute("a[text*='Product']", 'href', function(result){
         browser.assert.equal(result.value, "https://www.sparkcentral.com/product/")
     });
 
