@@ -18,15 +18,17 @@ module.exports = {
 
   'Verifying first test result': function(browser) {
     browser
+      // Locating next elements by xpath
+     .useXpath()
     // Verifying that first search result header is Sparkcentral - Official Site
-      .assert.containsText('#b_results > li:nth-child(1) > h2 > a', 'Sparkcentral - Official Site')
+      .assert.containsText('//*[@id="b_results"]/li[1]/h2/a', 'Sparkcentral - Official Site')
 
   },
   'Verifying all test results': function(browser){
     browser
-
-      //Looping through list of search result and verifying they all should display 'Sparkcentral'
-
+       // Converting back to css selector
+       .useCss()
+       //Looping through list of search result and verifying they all should display 'Sparkcentral'
        .elements('css selector', '.b_algo', function (res) {
         for(var i=0;i<res.value.length;i++){
         var elementCss = '#b_results > li:nth-child(' + (i+1) + ')> h2 > a > strong';
